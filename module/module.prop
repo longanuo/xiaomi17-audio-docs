@@ -1,0 +1,6 @@
+id=xiaomi17-stock-safe-audio
+name=小米17类哈曼音质音效
+version=1.5.6
+versionCode=22
+author=林河
+description=仅校验小米17标准版 pudding，不限制系统版本；沿用 v1.5.4 沉浸声、鼓点厚度与中低音量补偿。

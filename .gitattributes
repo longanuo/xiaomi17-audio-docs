@@ -1,0 +1,5 @@
+# Preserve the exact bytes imported from the published module package.
+module/** -text
+
+# Keep the packaging tool consistent across operating systems.
+tools/*.py text eol=lf

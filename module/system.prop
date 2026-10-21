@@ -1,0 +1,3 @@
+# 该兼容标记用于显示哈曼卡顿选项并启用原厂 MiSound 分支。
+# 不包含、不替换小米10S的 DSP 二进制、ACDB、功放校准或扬声器保护数据。
+ro.vendor.audio.sfx.harmankardon=1

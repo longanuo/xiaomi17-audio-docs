@@ -6,6 +6,14 @@
 
 “类哈曼”用于描述调音目标；本项目没有哈曼卡顿官方调音或认证，不承诺复现小米10S或其他设备的声音。
 
+## 下载与安装
+
+**[下载 v1.5.6 模块 ZIP](https://github.com/longanuo/xiaomi17-audio-docs/releases/download/v1.5.6/xiaomi17-audio-v1.5.6.zip)** · [查看版本发布页](https://github.com/longanuo/xiaomi17-audio-docs/releases/tag/v1.5.6)
+
+适用于小米17标准版 `pudding`，以及手机上已经正常工作的 SukiSU / KernelSU 模块管理环境。下载 ZIP 后，在模块管理器中安装并重启。
+
+本版以预发布形式提供。取消系统版本限制不等于所有 ROM 已适配；实际加载与听感仍需在具体手机、系统和应用上验证。
+
 ## 当前版本做了什么
 
 - 沿用 v1.5.4 的四份音频配置，保留沉浸声相关调整、鼓点厚度调整和中低音量补偿。
@@ -15,46 +23,20 @@
 
 **取消系统版本限制，不代表所有系统版本都经过兼容性验证。** 本版仍覆盖来自既有基线的整份配置；跨系统时，可能同时覆盖新系统在这些文件中新增或调整的原厂条目。
 
-## 源码与文档入口
+## 方案与源码
 
 - [完整模块源码与配置](module/)
-- [安装脚本](module/customize.sh)
-- [开机挂载脚本](module/post-fs-data.sh)
-- [开机音效服务脚本](module/service.sh)
-- [模块打包脚本](tools/build_module.py)
 - [完整方案：原理、修改范围与验证边界](docs/audio-plan-v1.5.6.md)
 - [v1.5.6 发布说明](releases/v1.5.6.md)
+- [开发者打包说明](docs/build.md)
 
-`module/` 包含从正式文件 `xiaomi17-audio-v1.5.6.zip` 提取的全部 15 个文件，包括安装、挂载、服务、自检、诊断、卸载脚本和四份音频配置。导入时逐文件保留原始内容；`.gitattributes` 禁止 Git 自动转换这些文件的换行符。
+`module/` 保留 v1.5.6 的全部 15 个原始模块文件。普通用户可直接下载上面的安装包；需要修改模块时，可参考开发者打包说明。
 
-## 从源码打包
+## 安装后自检
 
-电脑安装 Python 3.9 或以上版本后，在仓库根目录执行：
-
-```shell
-python tools/build_module.py
-```
-
-也可以使用 Windows 的 Python 启动器：
-
-```shell
-py -3 tools/build_module.py
-```
-
-脚本不需要第三方依赖。生成文件位于 `dist/xiaomi17-audio-v1.5.6.zip`，会检查必需文件、JSON/XML 格式、ZIP CRC 和包内文件一致性。`module.prop` 会直接放在 ZIP 根目录，`dist/` 不纳入 Git 提交。
-
-重新打包使用固定时间戳和文件权限，ZIP 文件的哈希与原始发布包可能不同；附件校验值应以实际上传文件为准。完整仓库的 “Download ZIP” 用于下载源码，安装包请使用本脚本生成。
-
-如果提供 GitHub Release 附件，可直接上传生成的模块 ZIP。当前仓库中的发布说明文件不表示已创建 GitHub Release 或上传附件。
-
-## 安装与自检
-
-适用范围为小米17标准版 `pudding`，以及手机上已经正常工作的 SukiSU / KernelSU 模块管理环境。其他机型和管理器组合未列入本次验证范围。
-
-1. 如已提供 Release 附件，下载 `xiaomi17-audio-v1.5.6.zip`，通过模块管理器安装，然后重启。
-2. 本版模块 ID 为 `xiaomi17-stock-safe-audio`。相同 ID 的旧版按管理器正常更新流程处理，避免同时启用其他外放调音模块。
-3. 查看手机上的 `/sdcard/Download/xiaomi17_audio_mod_selfcheck.txt`，确认版本为 `1.5.6`，开机标记为 `version=1.5.6 ok=1`。
-4. 继续核对实际媒体音量曲线、音效加载日志和播放表现。文件一致与挂载成功，只能证明对应文件检查通过。
+1. 本版模块 ID 为 `xiaomi17-stock-safe-audio`。相同 ID 的旧版按管理器正常更新流程处理，避免同时启用其他外放调音模块。
+2. 重启后查看手机上的 `/sdcard/Download/xiaomi17_audio_mod_selfcheck.txt`，确认版本为 `1.5.6`，开机标记为 `version=1.5.6 ok=1`。
+3. 继续核对实际媒体音量曲线、音效加载日志和播放表现。文件一致与挂载成功，只能证明对应文件检查通过。
 
 ## 验证状态
 
